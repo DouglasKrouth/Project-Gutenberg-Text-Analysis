@@ -1,5 +1,6 @@
 # We want to find a copy of gutenberg_index.csv if it exists?
 import pathlib
+import yaml
 
 # Utility function that fetches the Project Gutenberg catalog from their website
 def download_gutenberg_index():
