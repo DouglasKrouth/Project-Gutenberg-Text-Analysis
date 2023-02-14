@@ -8,7 +8,7 @@ import logging
 from config import Config
 
 cfg = Config()
-
+logging.getLogger()
 
 def get_gutenberg_index(refresh_index=False):
     """
@@ -20,7 +20,7 @@ def get_gutenberg_index(refresh_index=False):
         return
     # Check the data directory for file first
     if os.path.isfile(r"../data/gutenberg_index.csv"):
-        print("found file")
+        logging.info("found file")
         return
     # If file not found in ../data, check with pathlib across homedir (slow)
     else:
@@ -35,13 +35,13 @@ def get_gutenberg_index(refresh_index=False):
 
 def _download_gutenberg_index():
     """
-    Private util to fetch the Gutenberg catalob if it is not present in ../data or on local machine
+    Private util to fetch the Gutenberg catalog if it is not present in ../data or on local machine
     """
     # "https://www.gutenberg.org/cache/epub/feeds/pg_catalog.csv"
     url = cfg.config_params["gutenberg_index_link"]
     try:
         r = requests.get(url)
-        logging.info("Request successful")
+        logging.info("Request to Project Gutenberg successful. pg_catalog.csv retrieved.")
     # If the request fails, throw an exception
     except requests.exceptions.RequestException as e:
         raise SystemExit(e)

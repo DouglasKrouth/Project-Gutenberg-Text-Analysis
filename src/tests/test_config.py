@@ -2,6 +2,7 @@
 from .. import config
 import os
 import logging as log
+import pytest
 
 cfg = config.Config()
 

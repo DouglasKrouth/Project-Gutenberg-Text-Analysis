@@ -6,6 +6,7 @@
 
 if [ $1 == "test" ];
 then
-    cd ..
+    cd ../src
     pytest 
+    cd ../scripts
 fi
