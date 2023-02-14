@@ -1,5 +1,5 @@
 # test_config.py
-import src.config as config
+from .. import config
 import os
 import logging as log
 
