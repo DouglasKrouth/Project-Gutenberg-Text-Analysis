@@ -9,7 +9,7 @@ TODO : Not robust, could benefit from searching for yaml configs with pathlib
 '''
 class Config:
     config_params = {}
-    yaml_config_path = os.path.abspath("./src/config/config.yaml")
+    yaml_config_path = os.path.abspath("../config.yaml")
 
     def __init__(self, use_yaml=True, **kwargs):
         if use_yaml:

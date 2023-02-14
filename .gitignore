@@ -162,4 +162,4 @@ cython_debug/
 # Project specific
 # ----
 # Ignore data directory - we don't want to upload cache to GitHub
-/data
+/data/*

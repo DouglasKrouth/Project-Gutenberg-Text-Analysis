@@ -10,4 +10,3 @@ def test_check_YAML_present():
     
 def test_check_config_file_is_yaml():
     assert cfg.yaml_config_path.endswith(".yaml") or cfg.yaml_config_path.endswith(".yml")
-    
