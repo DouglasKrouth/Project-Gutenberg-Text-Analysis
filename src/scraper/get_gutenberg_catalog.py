@@ -10,12 +10,19 @@ from config import Config
 cfg = Config()
 logging.getLogger()
 
+
 def get_gutenberg_index(refresh_index=False):
     """
-    Util function to get the catalog data. If the file exists in ../data/ use it, else check glob, else download the file
+    Util function to get the catalog data. If the file exists in ../data/ use it, else check glob, else download the file.
+    - Condition to download file if specified : If config param use_cache_catalog == False and refresh_index == True, then download the catalog from scratch from Gutenberg
     """
-    # "Force refresh" by param
-    if refresh_index:
+    # Check if config contains use_cache_catalog value
+    if "use_cache_catalog" in cfg.config_params.keys():
+        use_cache_catalog = cfg.config_params["use_cache_catalog"]
+    else:
+        use_cache_catalog = None
+    # "Force refresh" by param or if cfg use_cache param is set to False
+    if refresh_index and not use_cache_catalog:
         _download_gutenberg_index()
         return
     # Check the data directory for file first
@@ -37,11 +44,18 @@ def _download_gutenberg_index():
     """
     Private util to fetch the Gutenberg catalog if it is not present in ../data or on local machine
     """
+    # Check if a new url, for some reason?, was passed into config for pg_catalog
     # "https://www.gutenberg.org/cache/epub/feeds/pg_catalog.csv"
-    url = cfg.config_params["gutenberg_index_link"]
+    if "gutenberg_index_link" in cfg.config_params.keys():
+        url = cfg.config_params["gutenberg_index_link"]
+    else:
+        url = "https://www.gutenberg.org/cache/epub/feeds/pg_catalog.csv"
+
     try:
         r = requests.get(url)
-        logging.info("Request to Project Gutenberg successful. pg_catalog.csv retrieved.")
+        logging.info(
+            "Request to Project Gutenberg successful. pg_catalog.csv retrieved."
+        )
     # If the request fails, throw an exception
     except requests.exceptions.RequestException as e:
         raise SystemExit(e)
