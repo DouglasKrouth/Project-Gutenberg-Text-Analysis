@@ -21,7 +21,7 @@ root.addHandler(handler)
 
 def main():
     logging.info("running main")
-    get_gutenberg_catalog.get_gutenberg_index(refresh_index=True)
+    get_gutenberg_catalog.get_gutenberg_index()
 
 
 if __name__ == "__main__":

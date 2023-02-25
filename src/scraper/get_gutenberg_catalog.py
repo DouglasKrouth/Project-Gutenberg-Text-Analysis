@@ -1,4 +1,4 @@
-# We want to find a copy of gutenberg_index.csv if it exists?
+# We want to find a copy of gutenberg_index.csv if it exists, load it into ../data directory
 # Author : Douglas Krouth
 import pathlib
 import yaml
@@ -37,6 +37,7 @@ def get_gutenberg_index(refresh_index=False):
                 print(i)
         # If file is not found from ~/, download from gutenberg.org
         else:
+            os.makedirs(r"../data")
             _download_gutenberg_index()
 
 
@@ -60,4 +61,5 @@ def _download_gutenberg_index():
     except requests.exceptions.RequestException as e:
         raise SystemExit(e)
     # Write the contents from the requests to csv file
+    os.makedirs(r"../data", exist_ok=True)
     open("../data/gutenberg_index.csv", "wb").write(r.content)
