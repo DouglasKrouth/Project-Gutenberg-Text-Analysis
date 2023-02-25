@@ -29,16 +29,8 @@ def get_gutenberg_index(refresh_index=False):
     if os.path.isfile(r"../data/gutenberg_index.csv"):
         logging.info("found file")
         return
-    # If file not found in ../data, check with pathlib across homedir (slow)
     else:
-        search = sorted(pathlib.Path("/home").glob("**/gutenberg_index.csv"))
-        if search is not None:
-            for i in search:
-                print(i)
-        # If file is not found from ~/, download from gutenberg.org
-        else:
-            os.makedirs(r"../data")
-            _download_gutenberg_index()
+        _download_gutenberg_index()
 
 
 def _download_gutenberg_index():
