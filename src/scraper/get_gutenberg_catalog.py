@@ -13,7 +13,7 @@ cfg = Config()
 logging.getLogger()
 
 
-def get_gutenberg_catalog(refresh_index=False):
+def _get_gutenberg_catalog(refresh_index=False):
     """
     Util function to get the catalog data. If the file exists in ../data/ use it, else check glob, else download the file.
     - Condition to download file if specified : If config param use_cache_catalog == False and refresh_index == True, then download the catalog from scratch from Gutenberg
@@ -94,6 +94,6 @@ def load_catalog(verbose=False):
                 return catalog_df
             except FileNotFoundError:
                 print("Gutenberg catalog not found, downloading!")
-                get_gutenberg_catalog()
+                _get_gutenberg_catalog()
                 continue
             break
