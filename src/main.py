@@ -4,7 +4,7 @@ import sys
 
 # Project
 from scraper import get_gutenberg_catalog
-import search_catalog
+from catalog import Catalog
 
 # ---
 # LOGGING
@@ -22,6 +22,7 @@ root.addHandler(handler)
 
 def main():
     logging.info("running main")
+    Catalog().search_title(book_title="All is Quiet on the Western Front")
     # get_gutenberg_catalog.get_gutenberg_index()
 
 
