@@ -4,6 +4,7 @@ import sys
 
 # Project
 from scraper import get_gutenberg_catalog
+import search_catalog
 
 # ---
 # LOGGING
@@ -21,7 +22,7 @@ root.addHandler(handler)
 
 def main():
     logging.info("running main")
-    get_gutenberg_catalog.get_gutenberg_index()
+    # get_gutenberg_catalog.get_gutenberg_index()
 
 
 if __name__ == "__main__":
