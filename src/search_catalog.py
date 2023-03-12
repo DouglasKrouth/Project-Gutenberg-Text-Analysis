@@ -23,5 +23,4 @@ class Catalog:
             self.catalog_df = pd.read_csv(self.catalog_path)
             
     def search(self, book_title):
-        
-        
+        pass
